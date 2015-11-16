@@ -1,8 +1,5 @@
 module.exports = function (grunt) {
 
-    // autoloader for other module
-    //require('load-grunt-tasks')(grunt);
-
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -16,7 +13,13 @@ module.exports = function (grunt) {
 
         'meta': {
             'jsFilesForTesting': [
-                'bower_components/',
+                'bower_components/jquery/dist/jquery.js',
+                'bower_components/angular/angular.js',
+                'bower_components/angular-route/angular-route.js',
+                'bower_components/angular-sanitize/angular-sanitize.js',
+                'bower_components/angular-mocks/angular-mocks.js',
+                'bower_components/restangular/dist/restangular.js',
+                'bower_components/underscore/underscore.js',
                 'test/**/*Spec.js'
             ]
         },
@@ -82,40 +85,12 @@ module.exports = function (grunt) {
             }
         },
 
-        'jshint': {
-            'options': {
-                'jshintrc': '.jshintrc'
-            },
-            'all' : [
-                'source/**/*.js'
-            ]
-        },
-
-        'watch': {
-            'dev': {
-                'files': [
-                    'source/**/*.js',
-                    '!bower_components/**',
-                    '!node_modules/**'
-                ],
-                'tasks': ['jshint'],
-                'options': {
-                    //'livereload': true
-                }
-            },
-            'other': {
-                'files': [
-                    '**/*.html',
-                    '**/*.css',
-                ],
-                'options': {
-                    //'livereload': true
-                }
-            }
-        }
     });
 
-    grunt.registerTask('test', ['karma:development']);
+    grunt.registerTask('test', [
+        'karma:development'
+    ]);
+    
     grunt.registerTask('build', [
         'jshint',
         'karma:development',
@@ -125,9 +100,5 @@ module.exports = function (grunt) {
         'karma:minified',
         'jsdoc'
     ]);
-    grunt.registerTask('wdev', [
-        //'jshintdev',
-        'watch'
-    ]);
-
+    
 };

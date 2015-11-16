@@ -1,7 +1,7 @@
 {
   "name": "Example",
   "namelower": "example",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An example AngularJS project",
   "readme": "README.md",
   "repository": {
@@ -9,8 +9,8 @@
     "url": "git@git.example.com:example.git"
   },  
   "devDependencies": {
-    "grunt": "0.4.2",
-    "load-grunt-tasks": "^1.0.0",
+    "load-grunt-tasks":         "^1.0.0",
+    "grunt":                    "0.4.2",
     "grunt-contrib-concat":     "0.3.0",
     "grunt-contrib-copy":       "0.5.0",
     "grunt-contrib-jshint":     "0.8.0",
@@ -26,6 +26,6 @@
   },  
   "scripts": {
     "postinstall": "bower install",
-    "test": "grunt build"
+    "test":        "grunt build"
   }
 }

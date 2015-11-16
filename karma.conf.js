@@ -10,7 +10,7 @@ module.exports = function(config) {
 
         // Because now we configure the files set within the Grunt config files, we no longer need it in our karma.conf file: 
         // files: [
-        //     'bower_components/jquery/jquery.js',
+        //     'bower_components/jquery/dist/jquery.js',
         //     'bower_components/angular/angular.js',
         //     'bower_components/angular-route/angular-route.js',
         //     'bower_components/angular-sanitize/angular-sanitize.js',

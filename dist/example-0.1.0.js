@@ -1,4 +1,32 @@
 /**
+ * Setup of main AngularJS application, with Restangular being defined as a dependency.
+ *
+ * @see controllers
+ * @see services
+ */
+'use strict';
+
+var app = angular.module('ExampleApp', [   
+	'restangular',
+	'ExampleApp.controllers',
+	'ExampleApp.services'
+]);
+/**
+ * This is an example controller.
+ * It triggers the UserdataService and puts the returned value on the scope
+ *
+ * @see services
+ */
+'use strict';
+
+var controllers = angular.module('ExampleApp.controllers', [])
+    .controller('ExampleController', function ($scope, UserdataService) {
+
+		UserdataService.getFirstUsername().then(function(firstUsername) {
+				$scope.firstUsername = firstUsername;
+		});
+    });
+/**
  * Restangular-based data service, fetches user data from the backend
  *
  * @see https://github.com/mgonto/restangular
