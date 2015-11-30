@@ -6,9 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<title>Angularjs vynils</title>
-	<link href="" rel="stylesheet">
+	<title>Angularspace</title>
 
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="source/static/css/normalize.css" rel="stylesheet" media="screen" />
+    <!--link href="http://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css"-->
+    <link href="source/static/css/styles.css" rel="stylesheet" media="screen" />
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -16,10 +19,46 @@
 	<![endif]-->
 </head>
 <body>
-	<div ng-app="ExampleApp" ng-controller="ExampleController">{{controllers.name}}</div>
+
+	<div class="container" data-ng-app="MainAppModule">
+		<div class="header">
+			<nav class="navbar" role="navigation">
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#/">Home</a></li>
+					<li role="presentation"><a href="#/active">Active</a></li>
+					<li role="presentation"><a href="#/gallery">Gallery</a></li>
+					<li role="presentation"><a href="#/todolist">Todolist</a></li>
+					<li role="presentation"><a href="#/beer">Beer Counter</a></li>
+				</ul>
+			<h3 class="text-muted pull-left">ANGULAR</h3>
+			</nav>
+		</div>
+
+		<div class="container-fluid" ng-view></div>
+
+		<footer class="footer">
+			<p>&copy; Company 2014</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="bower_components/lodash/dist/lodash.js"></script>
-	<script type="text/javascript" src="bower_components/restangular/dist/restangular.js"></script>
-	<script type="text/javascript" src="dist/example-0.1.0.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-ui/dist/ui-bootstrap-tpls-0.12.0.js"></script>
+	
+	<!--
+	<script type="text/javascript" src="dist/angularspace-0.1.0.min.js"></script>
+	-->
+	
+	<script type="text/javascript" src="source/app/MainAppModule.js"></script>
+	<script type="text/javascript" src="source/app/HttpInterceptor.js"></script>
+	<script type="text/javascript" src="source/app/LocalStorageService.js"></script>
+	<script type="text/javascript" src="source/app/ActiveModule.js"></script>
+	<script type="text/javascript" src="source/app/GalleryModule.js"></script>
+	<script type="text/javascript" src="source/app/TodoListModule.js"></script>
+	<script type="text/javascript" src="source/app/BeerCounterModule.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,15 @@
+<div data-ng-controller="TodoListController as todoList">
+	<h2>Todo</h2>
+	<span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+	[ <a href="" data-ng-click="todoList.archive()">archive</a> ]
+	<ul class="unstyled">
+		<li data-ng-repeat="todo in todoList.todos">
+			<input type="checkbox" data-ng-model="todo.done">
+			<span class="done-{{todo.done}}">{{todo.text}}</span>
+		</li>
+	</ul>
+	<form data-ng-submit="todoList.addTodo()">
+		<input type="text" data-ng-model="todoList.todoText"  size="30" placeholder="add new todo here">
+		<input class="btn-primary" type="submit" value="add">
+	</form>
+</div>

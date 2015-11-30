@@ -1,0 +1,30 @@
+<div ng-controller="ActiveController">
+
+	<style>
+		table, th , td {
+		  border: 1px solid grey;
+		  border-collapse: collapse;
+		  padding: 5px;
+		}
+		table tr:nth-child(odd) {
+		  background-color: #f1f1f1;
+		}
+		table tr:nth-child(even) {
+		  background-color: #ffffff;
+		}
+	</style> 
+
+	<table>
+		<tr ng-repeat="x in customernames | orderBy : 'Country'">
+			<td>{{ $index + 1 }}</td>
+			<td>{{ x.Name }}</td>
+			<td>{{ x.Country | uppercase }}</td>
+			<!--
+			<td ng-if="$odd" style="background-color:#070707">{{ x.Name }}</td>
+			<td ng-if="$even">{{ x.Name }}</td>
+			<td ng-if="$odd" style="background-color:#474747">{{ x.Country }}</td>
+			<td ng-if="$even">{{ x.Country }}</td>
+			-->
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,91 @@
+#main_gallery {
+    background: rgba(43,43,43,1);
+    color: #555;
+    font-family: 'Poiret One', sans-serif;
+
+}
+#main_gallery img {
+    max-width: 100%;
+}
+#main_gallery h2 {
+    font-weight: normal;
+    font-size: 4em;
+    letter-spacing: 0.75em;
+    text-transform: uppercase;
+    margin: 10px 0 40px;
+}
+#main_gallery .gallery {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+#main_gallery .gallery ul {
+    list-style: none;
+    padding: 0;
+}
+#main_gallery .gallery ul li {
+    display: inline-block;
+    margin: 15px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+#main_gallery .shadow {
+    border: solid 1px #555;
+    position:relative;
+    -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+#main_gallery .mainImage {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    opacity: 0;
+    -webkit-transition: opacity 1s, z-index 1s;
+       -moz-transition: opacity 1s, z-index 1s;
+            transition: opacity 1s, z-index 1s;
+    margin: 0 auto;
+    top: 130px;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+}
+#main_gallery .mainImage.show {
+    opacity: 1;
+    z-index: 10;
+}
+#main_gallery .mainImage img {
+    border: solid 3px #555;
+    -webkit-box-shadow: 0 0 80px #000;
+       -moz-box-shadow: 0 0 80px #000;
+            box-shadow: 0 0 80px #000;
+}
+#main_gallery .close {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    background: #555;
+    color:#fff;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    -webkit-box-shadow: 0 0 10px #000;
+       -moz-box-shadow: 0 0 10px #000;
+            box-shadow: 0 0 10px #000;
+}
+#main_gallery .close:hover {
+    background: #444;
+}
+
+
+
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}

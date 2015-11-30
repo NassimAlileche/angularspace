@@ -1,0 +1,11 @@
+	<h2>{{title}}</h2>
+	<div data-ng-class="showMainImage ? 'mainImage show' : 'mainImage'">
+		<a href="#" class="close" data-ng-click="close($event)">Close</a>
+		<img class="main" src="{{mainImage.main}}" alt="{{mainImage.title}}">
+	</div>
+	<ul class="inline">
+		<li class="shadow" data-ng-repeat="image in images" data-ng-click="selectImage(image)">
+			<img src="{{image.thumb}}" alt="{{image.title}}" >
+			<p>{{image.description}}</p>
+		</li>
+	</ul>

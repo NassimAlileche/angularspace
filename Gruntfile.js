@@ -1,4 +1,9 @@
+'use strict';
+
 module.exports = function (grunt) {
+
+    // autoloader for other module
+    //require('load-grunt-tasks')(grunt);
 
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -11,16 +16,28 @@ module.exports = function (grunt) {
     grunt.initConfig({
         'pkg': grunt.file.readJSON('package.json'),
 
+        'sources': {
+            'dev': [
+                'source/app/**/*.js',
+            ],
+            'tests': [
+                'test/**/*Spec.js',
+            ]
+        },
+
         'meta': {
             'jsFilesForTesting': [
                 'bower_components/jquery/dist/jquery.js',
+                'bower_components/bootstrap/dist/js/bootstrap.js',
                 'bower_components/angular/angular.js',
-                'bower_components/angular-route/angular-route.js',
-                'bower_components/angular-sanitize/angular-sanitize.js',
-                'bower_components/angular-mocks/angular-mocks.js',
-                'bower_components/restangular/dist/restangular.js',
-                'bower_components/underscore/underscore.js',
-                'test/**/*Spec.js'
+                'bower_components/angular-route/angular-route.min.js',
+                'bower_components/angular-messages/angular-messages.min.js',
+                'bower_components/bootstrap-ui/dist/ui-bootstrap-tpls-0.12.0.js',
+                //'bower_components/angular-sanitize/angular-sanitize.js',
+                //'bower_components/angular-mocks/angular-mocks.js',
+                //'bower_components/restangular/dist/restangular.js',
+                //'bower_components/underscore/underscore.js',
+                '<%= sources.tests %>'
             ]
         },
 
@@ -30,7 +47,7 @@ module.exports = function (grunt) {
                 'options': {
                     'files': [
                         '<%= meta.jsFilesForTesting %>',
-                        'source/**/*.js'
+                        '<%= sources.dev %>'
                     ]
                 }
             },
@@ -57,12 +74,23 @@ module.exports = function (grunt) {
         },
 
         'jshint': {
-            'beforeConcat': ['source/**/*.js']
+            'beforeConcat': [
+                '<%= sources.dev %>'
+            ],
+            
+            'watch': {
+                'options': {
+                    'jshintrc': '.jshintrc'
+                },
+                'all' : [
+                    '<%= sources.dev %>'
+                ]
+            },
         },
 
         'concat': {
             'dist': {
-                'src': ['source/**/*.js'],
+                'src': [ '<%= sources.dev %>' ],
                 'dest': 'dist/<%= pkg.namelower %>-<%= pkg.version %>.js'
             }
         },
@@ -79,11 +107,34 @@ module.exports = function (grunt) {
         },
 
         'jsdoc': {
-            'src': ['source/**/*.js'],
+            'src': [ '<%= sources.dev %>' ],
             'options': {
                 'destination': 'doc'
             }
         },
+
+        'watch': {
+            'dev': {
+                'files': [
+                    '<%= sources.dev %>',
+                    '!bower_components/**',
+                    '!node_modules/**'
+                ],
+                'tasks': ['jshint:watch'],
+                'options': {
+                    //'livereload': true
+                }
+            },
+            'other': {
+                'files': [
+                    '**/*.html',
+                    '**/*.css',
+                ],
+                'options': {
+                    //'livereload': true
+                }
+            }
+        }
 
     });
 
@@ -92,13 +143,22 @@ module.exports = function (grunt) {
     ]);
     
     grunt.registerTask('build', [
-        'jshint',
+        'jshint:beforeConcat',
         'karma:development',
         'concat',
         'karma:dist',
         'uglify',
         'karma:minified',
         'jsdoc'
+    ]);
+
+    grunt.registerTask('wdev', [
+        'jshint:watch',
+        'watch'
+    ]);
+    
+    grunt.registerTask('readpkg', [
+        'uglify'
     ]);
     
 };
